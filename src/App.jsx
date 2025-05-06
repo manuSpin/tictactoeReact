@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import confetti from "canvas-confetti";
 const TURNS = {
   X: 'x',
   O: 'o'
@@ -74,6 +74,7 @@ function App() {
 
     if (newWinner) {
       setWinner(newWinner);
+      confetti()
 
     } else if (checkEndGame(newBoard)) {
       // Revisar si se ha acabado el juego (Empate)

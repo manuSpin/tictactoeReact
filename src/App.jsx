@@ -50,6 +50,10 @@ function App() {
     return null
   }
 
+  const checkEndGame = (newBoard) => {
+    return newBoard.every((square) => square != null);
+  }
+
   const updatedBoard = (index) => {
     // Evita sobreescribir una casilla
     if (board[index] || winner) {
@@ -70,9 +74,11 @@ function App() {
 
     if (newWinner) {
       setWinner(newWinner);
-    }
 
-    // Revisar si se ha acabado el juego (Empate)
+    } else if (checkEndGame(newBoard)) {
+      // Revisar si se ha acabado el juego (Empate)
+      setWinner(false);
+    }
   }
 
   const resetGame = () => {
@@ -81,10 +87,12 @@ function App() {
     setWinner(null);
   }
 
+
+
   return (
     <main className='board'>
       <h1>Tic tac toe</h1>
-      <button onClick={resetGame}>Volver a empezar</button>
+      <button onClick={resetGame}>Reiniciar</button>
 
       <section className='game'>
         {
